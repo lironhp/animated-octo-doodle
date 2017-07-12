@@ -66,24 +66,28 @@ def chop_itr(number, int_list):
 	return -1
 			
 def chop_recursive(number,int_list):
-	if len(int_list) == 0:
-		return -1
-	else:
-		list_size = len(int_list)
-		start_idx = FIRST_IDX
-		end_idx = list_size-1
-		current_idx = end_idx/2
-		current_value = int_list[current_idx]
-		if current_value == number:
-			return current_idx
-		elif current_value > number:
-			return chop_recursive(number,int_list[:current_idx-1]
-		elif current_value < number:
-			return chop_recursive(number,int_list[current_idx+1:]
+	return helper(number,int_list,0,len(int_list)-1)
 
+def helper(number,int_list,start,end):
+	if len(int_list) == 0:
+                return -1
+        else:
+                list_size = len(int_list)
+                start_idx = FIRST_IDX
+                end_idx = list_size-1
+                current_idx = end_idx/2
+		real_idx = (start+end)/2
+                current_value = int_list[current_idx]
+                if current_value == number:
+                        return real_idx 
+                elif current_value > number:
+                        return helper(number,int_list[:current_idx],start,real_idx-1)
+                elif current_value < number:
+                        return helper(number,int_list[current_idx+1:],real_idx+1,end)
 		
 	
   
   
 if __name__ == "__main__":
 	unittest.main()
+
