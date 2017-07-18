@@ -1,8 +1,5 @@
 import unittest
 
-#GLOBALS
-#=======
-FIRST_IDX = 0
 
 class TestBinarySearch(unittest.TestCase):
 	def test_binary_search(self):
@@ -23,6 +20,12 @@ class TestBinarySearch(unittest.TestCase):
 		self.assertEqual(3,binary_serach_max_idx([1,2,2,2,3],2))
 		self.assertEqual(4,binary_serach_max_idx([3,2,17,34,34,56],34))
 		self.assertEqual(5,binary_serach_max_idx([3,2,17,34,34,56],56))
+		
+	def test_frequency(self):
+		self.assertEqual(-1,get_freq([1,2,3],0))
+		self.assertEqual(3,get_freq([1,2,2,2,3],2))
+		self.assertEqual(2,get_freq([3,2,17,34,34,56],34))
+		self.assertEqual(1,get_freq([3,2,17,34,34,56],56))
 
 
 
@@ -107,10 +110,13 @@ def  binary_serach_max_idx(sorted_list, element):
 	return binary_serach_max_idx_rec(sorted_list, element,0,len(sorted_list)-1)
 
 def get_freq(sorted_list, element):
-	if element not in sorted_list:
-		return 0
+	first_idx = binary_serach_min_idx(sorted_list, element)
+	last_idx = binary_serach_max_idx(sorted_list, element)
+	if first_idx != -1 :
+		return (last_idx-first_idx +1)
+		
+	return -1
 	
-	#element is in list, do binary search to find some index of it		
 
   
   
