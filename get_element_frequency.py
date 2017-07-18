@@ -51,17 +51,12 @@ def binary_search(sorted_list, element)	:
 def binary_serach_min_idx_rec(sorted_list, element,real_start_idx,real_end_idx):
 	if len(sorted_list) == 0:
 		return -1
-	#print "current list:", sorted_list
 	middle_idx = (len(sorted_list)-1)/2
-	#print "middle_idx is:",middle_idx
 	real_middle_idx = (real_start_idx+real_end_idx)/2
-	#print "real_middle_idx:", real_middle_idx
 	current_element = sorted_list[middle_idx]
-	#print "current_element:", current_element
 	if current_element == element:
 		if  middle_idx== 0 or sorted_list[middle_idx-1] != element:
 			return real_middle_idx
-		#search minimum index
 		else:
 			return binary_serach_min_idx_rec(sorted_list[:middle_idx],element,real_start_idx,real_middle_idx-1)
 	
@@ -72,11 +67,7 @@ def binary_serach_min_idx_rec(sorted_list, element,real_start_idx,real_end_idx):
 	elif current_element < element:
 		#print "current is lower"
 		return binary_serach_min_idx_rec(sorted_list[middle_idx+1:],element,real_middle_idx+1,real_end_idx)
-		
 
-	
-	
-	return
 	
 def binary_serach_min_idx(sorted_list, element):
 	return binary_serach_min_idx_rec(sorted_list, element,0,len(sorted_list)-1)
